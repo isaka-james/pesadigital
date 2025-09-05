@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/tanq16/expenseowl/internal/storage"
+	"github.com/isaka-james/pesadigital/internal/storage"
 )
 
 // exports all expenses to CSV
@@ -214,7 +214,7 @@ func (h *Handler) ImportCSV(w http.ResponseWriter, r *http.Request) {
 	log.Printf("HTTP: Imported %d expenses from CSV file. Skipped %d records.", importedCount, skippedCount)
 }
 
-// handles importing from ExpenseOwl < v4.0
+// handles importing from PesaDigital < v4.0
 // TODO: remove this in the future
 func (h *Handler) ImportOldCSV(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
@@ -291,7 +291,7 @@ func (h *Handler) ImportOldCSV(w http.ResponseWriter, r *http.Request) {
 			categorySet[strings.ToLower(category)] = true // Add to set to handle duplicates in the same file
 		}
 
-		// switches sign for new expenseowl
+		// switches sign for new pesadigital
 		amountUpdated := amount
 		if category != "Income" {
 			amountUpdated = amount * -1

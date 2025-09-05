@@ -33,6 +33,7 @@ const currencyBehaviors = {
     "ils": { symbol: "₪", useComma: false, useDecimals: true },
     "vnd": { symbol: "₫", useComma: true, useDecimals: false },
     "myr": { symbol: "RM", useComma: false, useDecimals: true },
+    "tsh": { symbol: "TSh", useComma: false, useDecimals: false, locale: "en-US"  }, 
 };
 
 // let currentCurrency = 'usd';
@@ -42,15 +43,16 @@ const currencyBehaviors = {
 // let allTags = new Set();
 
 function formatCurrency(amount) {
-    const behavior = currencyBehaviors[currentCurrency] || { symbol: '$', useComma: false, useDecimals: true };
+    const behavior = currencyBehaviors[currentCurrency] || { symbol: '$', useComma: false, useDecimals: true, locale: "en-US" };
     const isNegative = amount < 0;
     const absAmount = Math.abs(amount);
     const options = {
         minimumFractionDigits: behavior.useDecimals ? 2 : 0,
         maximumFractionDigits: behavior.useDecimals ? 2 : 0,
     };
-    let formattedAmount = new Intl.NumberFormat(behavior.useComma ? 'de-DE' : 'en-US', options).format(absAmount);
-    const postfixCurrencies = new Set(['kr', 'kr.', 'Fr', 'zł']);
+    // Use locale from behavior, default to 'en-US'
+    let formattedAmount = new Intl.NumberFormat(behavior.locale || (behavior.useComma ? 'de-DE' : 'en-US'), options).format(absAmount);
+    const postfixCurrencies = new Set(['kr', 'kr.', 'Fr', 'zł','tsh']);
     let result = postfixCurrencies.has(behavior.symbol) ? `${formattedAmount} ${behavior.symbol}` : `${behavior.symbol}${formattedAmount}`;
     return isNegative ? `-${result}` : result;
 }

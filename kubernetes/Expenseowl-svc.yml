@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: expenseowl-svc
-  namespace: expenseowl
+  name: pesadigital-svc
+  namespace: pesadigital
 spec:
   selector:
-    app: expenseowl
+    app: pesadigital
   ports:
   - port: 8080
     targetPort: 8080

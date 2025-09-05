@@ -67,11 +67,11 @@ jobs:
           go-version: '1.23'
       - name: Build Binary
         run: |
-          GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -ldflags="-X 'main.version=${{ needs.create-release.outputs.version }}'" -o expenseowl-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.os == 'windows' && '.exe' || '' }} ./cmd/expenseowl
+          GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -ldflags="-X 'main.version=${{ needs.create-release.outputs.version }}'" -o pesadigital-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.os == 'windows' && '.exe' || '' }} ./cmd/pesadigital
       - name: Upload Release Asset
         run: |
           gh release upload "${{ needs.create-release.outputs.version }}" \
-            "expenseowl-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.os == 'windows' && '.exe' || '' }}"
+            "pesadigital-${{ matrix.os }}-${{ matrix.arch }}${{ matrix.os == 'windows' && '.exe' || '' }}"
         env:
           GH_TOKEN: ${{ github.token }}
 
@@ -108,5 +108,5 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            tanq16/expenseowl:main
-            tanq16/expenseowl:${{ needs.create-release.outputs.version }}
+            tanq16/pesadigital:main
+            tanq16/pesadigital:${{ needs.create-release.outputs.version }}

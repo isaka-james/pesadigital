@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: expenseowl
-  namespace: expenseowl
+  name: pesadigital
+  namespace: pesadigital
 spec:
-  serviceName: expenseowl-svc
+  serviceName: pesadigital-svc
   selector:
     matchLabels:
-      app: expenseowl
+      app: pesadigital
   replicas: 1 
   template:
     metadata:
       labels:
-        app: expenseowl
+        app: pesadigital
     spec:
       containers:
-      - name: expenseowl
-        image: tanq16/expenseowl:main
+      - name: pesadigital
+        image: tanq16/pesadigital:main
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
-          name: expenseowl-port
+          name: pesadigital-port
         envFrom:
         - configMapRef:
-            name: expenseowl-config
+            name: pesadigital-config
         volumeMounts:
         - mountPath: "/app/data"
-          name: expenseowl-vol
+          name: pesadigital-vol
       volumes:
-      - name: expenseowl-vol
+      - name: pesadigital-vol
         persistentVolumeClaim:
-          claimName: "expenseowl-pvc"
+          claimName: "pesadigital-pvc"

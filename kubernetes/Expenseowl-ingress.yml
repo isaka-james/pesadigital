@@ -1,19 +1,19 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: expenseowl-ingress
-  namespace: expenseowl
+  name: pesadigital-ingress
+  namespace: pesadigital
   labels:
-    name: expenseowl
+    name: pesadigital
 spec:
   rules:
-  - host: expenseowl.localhost
+  - host: pesadigital.localhost
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: expenseowl-svc
+            name: pesadigital-svc
             port:
               number: 8080

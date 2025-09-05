@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/tanq16/expenseowl/internal/storage"
-	"github.com/tanq16/expenseowl/internal/web"
+	"github.com/isaka-james/pesadigital/internal/storage"
+	"github.com/isaka-james/pesadigital/internal/web"
 )
 
 // Handler holds the storage interface

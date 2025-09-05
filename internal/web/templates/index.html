@@ -27,7 +27,7 @@
             });
         }
     </script>
-    <title>ExpenseOwl Dashboard</title>
+    <title>PesaDigital Dashboard</title>
     <script src="/chart.min.js"></script>
 </head>
 <body>
@@ -35,7 +35,7 @@
         <header>
             <div class="nav-bar">
                 <a href="/">
-                    <img src="/pwa/icon-192.png" alt="ExpenseOwl Logo" height="85" style="vertical-align: middle; margin-right: 20px;">
+                    <img src="/pwa/logo.png" alt="PesaDigital Logo" height="85" style="vertical-align: middle; ">
                 </a>
                 <a href="/" class="view-button active" data-tooltip="Dashboard">
                     <i class="fa-solid fa-chart-pie"></i>
@@ -78,7 +78,7 @@
                         <label for="tags-input">Tags</label>
                         <div id="tags-input-container" class="tags-input-container">
                             <div id="selected-tags" class="selected-tags"></div>
-                            <input type="text" id="tags-input" placeholder="(optional)">
+                            <input type="text" id="tags-input" placeholder="(optional)"   autocomplete="off" autocorrect="off">
                         </div>
                         <div id="tags-dropdown" class="tags-dropdown"></div>
                     </div>
@@ -104,6 +104,7 @@
                     <div class="form-group form-group-checkbox">
                         <label for="reportGain">Report Gain</label>
                         <input type="checkbox" id="reportGain" class="styled-checkbox">
+                        <input type="text" id="currency" value="tsh" hidden>
                     </div>
     
                     <button type="submit" class="nav-button">Add Expense</button>
@@ -139,7 +140,7 @@
 
     <script src="/functions.js"></script>
     <script>
-        let currentCurrency = 'usd';
+        let currentCurrency = document.getElementById('currency').value;
         let startDate = 1;
         let pieChart = null;
         let currentDate = new Date();
